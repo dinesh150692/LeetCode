@@ -1,0 +1,65 @@
+// Problem - https://leetcode.com/problems/add-two-numbers/
+// Solutiom
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function(l1, l2) {
+    const newLL = new ListNode(undefined, undefined)
+    let data = newLL
+    let extra = 0
+    while( l1 !== null && l2 !== null) {
+        const num = l1.val + l2.val + extra
+        if (num > 9) {
+            extra = Math.floor(num/10)
+            data.next = new ListNode(num%10, undefined)
+            data = data.next
+        } else {
+            extra = 0
+            data.next = new ListNode(num, undefined) 
+            data = data.next
+        }
+        l1 = l1.next
+        l2 = l2.next
+    }
+    while (l1 !== null) {
+        const num = l1.val + extra
+        if (num > 9) {
+            extra = Math.floor(num/10)
+            data.next = new ListNode(num%10, undefined)
+            data = data.next
+        } else {
+            extra = 0
+            data.next = new ListNode(num, undefined) 
+            data = data.next
+        }
+        l1 = l1.next
+    }
+    while (l2 !== null) {
+        const num = l2.val + extra
+        if (num > 9) {
+            extra = Math.floor(num/10)
+            data.next = new ListNode(num%10, undefined)
+            data = data.next
+        } else {
+            extra = 0
+            data.next = new ListNode(num, undefined) 
+            data = data.next
+        }
+        l2 = l2.next
+    }
+    if (extra) {
+        data.next = new ListNode(extra, undefined) 
+    }
+    
+    return newLL.next
+};
