@@ -1,0 +1,20 @@
+// Problem - https://leetcode.com/problems/reverse-integer/
+
+
+
+var reverse = function(x) {
+    let y = 0
+    if (x > -Math.pow(2, 31) && x < (Math.pow(2, 31) - 1)) {
+      if (x >= 0) {
+          y = !x ? x : Number(x.toString().split("").reverse().join(""))
+      }   else {
+          x = x * -1
+          y = -Number(x.toString().split("").reverse().join(""))
+      }      
+    }
+  
+    if (y > -Math.pow(2, 31) && y < (Math.pow(2, 31) - 1)) {
+        return y
+    }
+    return 0
+};
