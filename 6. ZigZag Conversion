@@ -1,0 +1,36 @@
+// Problem - https://leetcode.com/problems/zigzag-conversion/
+
+
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function(s, numRows) {
+  let arr = [[]]
+  s = s.split("")
+  let i = 0, col = 0
+  while (i < s.length) {
+    for(let j = 0; j< numRows && i< s.length ; j++) {
+      if (!arr[j]) arr[j] = []
+      arr[j][col] = s[i]
+      i++
+    }
+    col++
+    for(let j = numRows - 2; j > 0 && i< s.length ; j--) {
+      if (!arr[j]) arr[j] = []
+      arr[j][col] = s[i]
+      col++
+      i++
+    }
+  }
+  let str = ""
+  for (let a = 0; a< numRows;a++) {
+    for (let b = 0; b< col;b++) {
+      if (arr[a] && arr[a][b]) {
+        str = str ? str + arr[a][b] : arr[a][b]
+      }
+    }  
+  }
+  return str
+};
