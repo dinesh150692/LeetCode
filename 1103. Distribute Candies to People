@@ -1,0 +1,21 @@
+// https://leetcode.com/problems/distribute-candies-to-people/
+
+
+
+/**
+ * @param {number} candies
+ * @param {number} num_people
+ * @return {number[]}
+ */
+var distributeCandies = function(candies, num_people) {
+    const arr = Array(num_people).fill(0)
+    let count = 1
+    while(candies>0) {
+        for(let k = 0; k<arr.length&&candies>0; k++) {
+            arr[k] += candies > count ? count : candies
+            candies -= count
+            count++
+        }
+    }
+    return arr
+};
