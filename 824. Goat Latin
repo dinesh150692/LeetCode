@@ -1,0 +1,21 @@
+// Problem https://leetcode.com/problems/goat-latin/
+
+/**
+ * @param {string} S
+ * @return {string}
+ */
+var toGoatLatin = function(S) {
+    S = S.split(" ")
+    let end = "a"
+    for (let i=0; i< S.length; i++) {
+        if(!["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"].includes(S[i][0])) {
+            const temp = S[i][0]
+            S[i] = S[i].slice(1) + temp
+        }
+        S[i] += "ma" + end
+        end += "a"
+    }
+    
+    return S.join(" ")
+    
+};
